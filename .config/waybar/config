@@ -1,0 +1,210 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 40,
+    "spacing": 4,
+    
+    "modules-left": [
+        "hyprland/workspaces",
+        "hyprland/submap",
+        "custom/media"
+    ],
+    
+    "modules-center": [
+        "hyprland/window"
+    ],
+    
+    "modules-right": [
+        "custom/pacman",
+        "custom/notification",
+        "tray",
+        "idle_inhibitor",
+        "pulseaudio",
+        "battery",
+        "clock"
+    ],
+    
+    "hyprland/workspaces": {
+        "disable-scroll": false,
+        "all-outputs": true,
+        "on-click": "activate",
+        "persistent-workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": [],
+            "6": [],
+            "7": [],
+            "8": [],
+            "9": [],
+            "10": []
+        },
+        "format": "{icon}",
+        "format-icons": {
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8",
+            "9": "9",
+            "10": "10",
+            "urgent": "!",
+            "default": ""
+        }
+    },
+    
+    "hyprland/window": {
+        "max-length": 80,
+        "separate-outputs": true
+    },
+    
+    "keyboard-state": {
+        "numlock": true,
+        "capslock": true,
+        "format": "{name} {icon}",
+        "format-icons": {
+            "locked": "",
+            "unlocked": ""
+        }
+    },
+    
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "󰈈",
+            "deactivated": "󰈉"
+        }
+    },
+    
+    "tray": {
+        "icon-size": 18,
+        "spacing": 10
+    },
+    
+    "clock": {
+        "timezone": "Europe/Brussels",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format": "{:%d-%m-%Y %H:%M}"
+    },
+    
+    "cpu": {
+        "format": "{usage}% 󰻠",
+        "tooltip": true,
+        "interval": 2
+    },
+    
+    "memory": {
+        "format": "{}% 󰍛",
+        "interval": 2
+    },
+    
+    "temperature": {
+        "critical-threshold": 80,
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": ["󱃃", "󰔏", "󱃂"]
+    },
+    
+    "backlight": {
+        "format": "{percent}% {icon}",
+        "format-icons": ["󰃚", "󰃛", "󰃜", "󰃝", "󰃞", "󰃟", "󰃠"]
+    },
+    
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-charging": "{capacity}% 󰂄",
+        "format-plugged": "{capacity}% 󰚥",
+        "format-alt": "{time} {icon}",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    },
+    
+    "network": {
+        "format-wifi": "󰖩",
+        "format-ethernet": "󰈀",
+        "tooltip-format": "{essid} via {gwaddr} 󰖟",
+        "format-linked": "(No IP) 󰖟",
+        "format-disconnected": "⚠",
+        "format-alt": "{ipaddr}/{cidr}",
+        "on-click": "nm-connection-editor &",
+    },
+    
+    "pulseaudio": {
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": "󰖁 {icon} {format_source}",
+        "format-muted": "󰖁 {format_source}",
+        "format-source": "{volume}% 󰍬",
+        "format-source-muted": "󰍭",
+        "format-icons": {
+            "headphone": "󰋋",
+            "hands-free": "󰥰",
+            "headset": "󰋎",
+            "phone": "󰏲",
+            "portable": "󰄝",
+            "car": "󰄋",
+            "default": ["󰕿", "󰖀", "󰕾"]
+        },
+        "on-click": "pavucontrol"
+    },
+    
+    "custom/media": {
+        "format": "{icon} {text}",
+        "return-type": "json",
+        "max-length": 40,
+        "format-icons": {
+            "spotify": "󰓇",
+            "default": "󰎆"
+        },
+        "escape": true,
+        "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{title}}\", \"tooltip\": \"{{playerName}}: {{artist}} - {{title}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+        "on-click": "playerctl play-pause"
+      },
+
+    "custom/pacman": {
+        "format": "{}",
+        "interval": 300,
+        "exec": "~/.config/waybar/scripts/package-update.sh",
+        "on-click": "kitty -e 'arch-update'; pkill -SIGRTMIN+8 waybar",
+        "return-type": "json",
+        "signal": 8,
+        "max-length": 5,
+        "min-length": 3
+    },
+    
+    "custom/notification": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+            "notification": "󱅫",
+            "none": "󰂚",
+            "dnd-notification": "󰂛",
+            "dnd-none": "󰂛",
+            "inhibited-notification": "󱅫",
+            "inhibited-none": "󰂚",
+            "dnd-inhibited-notification": "󰂛",
+            "dnd-inhibited-none": "󰂛"
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+    },
+
+    "custom/bluetooth": {
+        "format": "BT: {}",
+        "exec": "bluetoothctl show | grep 'Powered' | awk '{print $2}'",
+        "interval": 5,
+        "on-click": "blueman-manager",
+        "return-type": "text"
+    }
+}

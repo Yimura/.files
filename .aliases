@@ -1,0 +1,3 @@
+alias ssh='TERM=xterm-256color ssh'
+alias please='sudo'
+alias ls='ls --color'

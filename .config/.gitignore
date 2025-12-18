@@ -1,0 +1,10 @@
+*
+!.gitignore
+!hypr/
+!hypr/*
+!kitty/
+!kitty/*
+!waybar/
+!waybar/*
+!wofi/*
+!wofi/
